@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kbstar.mapper.ChartMapper">
+
+    <select id="getMonthlyTotal" resultType="chart">
+        <![CDATA[
+            select TO_NUMBER(TO_CHAR(rdate,'MM')) AS month, gender, SUM(price) AS total from sales
+            GROUP BY TO_CHAR(rdate,'MM'), gender
+            ORDER BY 1
+        ]]>
+    </select>
+
+
+<!--    <select id="getMonthlyTotal" resultType="chart">-->
+<!--        select TO_NUMBER(TO_CHAR(rdate,'MM')) AS month, gender, SUM(price) AS total from sales-->
+<!--        WHERE TO_NUMBER(TO_CHAR(rdate,'MM')) &lt; 5-->
+<!--        GROUP BY TO_CHAR(rdate,'MM'), gender-->
+<!--        ORDER BY 1-->
+<!--    </select>-->
+
+<!--    <select id="getMonthlyTotal" resultType="chart">-->
+<!--        select TO_NUMBER(TO_CHAR(rdate,'MM')) AS month, gender, SUM(price) AS total from sales-->
+<!--        GROUP BY TO_CHAR(rdate,'MM'), gender-->
+<!--        HAVING TO_NUMBER(TO_CHAR(rdate,'MM')) > 5-->
+<!--        ORDER BY 1-->
+<!--    </select>-->
+
+<!--WHERE와 HAVING 속도차이-->
+<!--&gt; &lt;  if문,조건문안에서는 <> 사용하면 쿼리종류포인트로 인식할 수 있음 -->
+<!-- 꺽쇠 자유롭게 사용가능구간
+     <![CDATA[
+
+     ]]>
+-->
+
+</mapper>
